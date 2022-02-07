@@ -12,25 +12,25 @@ yarn add @digichanges/solid-multiselect
 Add as a module:
 
 ```ts
-import { Multiselect, Option } from '@digichanges/solid-multiselect';
+import { MultiSelect, Option } from '@digichanges/solid-multiselect';
 ```
 
 ## Demo
 [Demo codesandbox](https://codesandbox.io/s/solidjs-multiselect-demo-db55z?file=/src/main.tsx)
 
-<img src="statics/Multiselect_examples.png" alt="multi-select">
+<img src="statics/MultiSelect_examples.png" alt="multi-select">
 
 ### Search:
-<img src="statics/Multiselect_search_examples.png" alt="multi-select">
+<img src="statics/MultiSelect_search_examples.png" alt="multi-select">
 
 ## Example
 
 
 ```jsx
-import { Multiselect } from '@digichanges/solid-components'
+import { MultiSelect } from '@digichanges/solid-components'
 
 <h3>Limit 2 elements</h3>
-<Multiselect
+<MultiSelect
     style={{ chips: { color: "red", "background-color": "pink" } }}
     options={["yellow", "blue", "pink", "white"]}
     onSelect={console.log}
