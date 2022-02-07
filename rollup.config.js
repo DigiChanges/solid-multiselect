@@ -42,6 +42,7 @@ export default {
         } ),
         styles(),
         {
+            modules: true,
             writeBundle ()
             {
                 fs.writeFileSync( './dist/src/package.json', JSON.stringify( { type: 'module' }, null, '  ' ) );
