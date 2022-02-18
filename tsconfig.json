@@ -1,17 +1,17 @@
 {
   "compilerOptions": {
+    "outDir": "./dist",
+    "emitDeclarationOnly": false,
+    "declaration": true,
     "target": "esnext",
-    "module": "esnext",
+    "newLine": "LF",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "jsx": "preserve",
     "jsxImportSource": "solid-js",
-    "declaration": true,
-    "declarationDir": "./dist/src/types"
+    "jsx": "preserve"
   },
   "include": [
     "./src"
   ],
-  "exclude": ["node_modules/", "dist/"]
+  "exclude": ["node_modules"]
 }

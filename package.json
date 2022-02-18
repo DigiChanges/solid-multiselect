@@ -6,13 +6,14 @@
     "type": "git",
     "url": "https://github.com/digichanges/solid-multiselect.git"
   },
-  "module": "./dist/src/index.js",
-  "types": "./dist/src/types/index.d.ts",
-  "exports": {
-    ".": {
-      "default": "./dist/src/index.js"
-    }
+  "bugs": {
+    "url": "https://github.com/DigiChanges/solid-multiselect/issues"
   },
+  "homepage": "https://github.com/DigiChanges/solid-multiselect#readme",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "sideEffects": "false",
   "files": [
     "dist"
   ],
@@ -30,30 +31,25 @@
     "access": "public"
   },
   "scripts": {
-    "build": "rollup -c",
-    "lint": "eslint --ext ts,tsx --max-warnings 0 --cache src",
-    "watch:js": "rollup -c --watch"
+    "prebuild": "npm run clean",
+    "clean": "rimraf dist/",
+    "build": "tsc && yarn cp:css",
+    "cp:css": "cp src/MultiSelect/MultiSelect.css dist/MultiSelect/MultiSelect.css",
+    "lint": "eslint --ext ts,tsx --max-warnings 0 --cache src"
   },
   "author": "DigiChanges <https://www.linkedin.com/company/digichanges>",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.16.0",
-    "@babel/preset-typescript": "^7.16.7",
-    "@rollup/plugin-babel": "^5.3.0",
-    "@rollup/plugin-node-resolve": "^13.1.3",
-    "@rollup/plugin-typescript": "^8.3.0",
-    "babel-preset-solid": "^1.2.2",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
     "eslint": "^8.0.1",
     "eslint-plugin-solid": "^0.1.2",
-    "rollup": "^2.67.1",
-    "rollup-plugin-delete": "^2.0.0",
     "typescript": "^4.4.4"
   },
   "peerDependencies": {
     "solid-js": "^1.1.3"
   },
   "dependencies": {
-    "rollup-plugin-styles": "^4.0.0",
     "solid-js": "^1.1.3"
   }
 }

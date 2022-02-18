@@ -80,7 +80,7 @@ export const MultiSelect: Component<IMultiSelectProps> = ( props: IMultiSelectPr
     const [ groupedObject, setGroupedObject ] = createSignal( [] );
 
 
-    let optionTimeout: NodeJS.Timeout;
+    let optionTimeout: number;
     let searchBox: HTMLInputElement;
     const searchWrapper = ( el: HTMLInputElement ) => el.addEventListener( 'click', listenerCallback );
 
@@ -230,7 +230,6 @@ export const MultiSelect: Component<IMultiSelectProps> = ( props: IMultiSelectPr
 
     const initialSetValue = () =>
     {
-
         if ( !props.showCheckbox && !props.singleSelect )
         {
             removeSelectedValuesFromOptions( false );
@@ -311,15 +310,8 @@ export const MultiSelect: Component<IMultiSelectProps> = ( props: IMultiSelectPr
         }
     };
 
-    const onSelectItem = ( item: Option ) => ( event?: any ) =>
+    const onSelectItem = ( item: Option ) => () =>
     {
-        // event.stopPropagation();
-        // console.log( '>>> stop event:' );
-        // console.log( event );
-
-        // console.log( '>>> item:' );
-        // console.log( item );
-
         if ( !keepSearchTerm )
         {
             setInputValue( '' );
