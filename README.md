@@ -12,16 +12,16 @@ yarn add @digichanges/solid-multiselect
 Add as a module:
 
 ```ts
-import { MultiSelect, Option } from '@digichanges/solid-multiselect';
+import { MultiSelect } from '@digichanges/solid-multiselect';
 ```
 
 ## Demo
 [Demo codesandbox](https://codesandbox.io/s/solidjs-multiselect-demo-db55z?file=/src/main.tsx)
 
-<img src="statics/multiselect_examples.png" alt="multi-select example">
+<img src="doc/multiselect_examples.png" alt="multi-select example">
 
 ### Search:
-<img src="statics/multiselect_search_examples.png" alt="multi-select search example">
+<img src="doc/multiselect_search_examples.png" alt="multi-select search example">
 
 ## Example
 
