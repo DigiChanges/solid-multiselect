@@ -18,10 +18,10 @@ import { MultiSelect, Option } from '@digichanges/solid-multiselect';
 ## Demo
 [Demo codesandbox](https://codesandbox.io/s/solidjs-multiselect-demo-db55z?file=/src/main.tsx)
 
-<img src="statics/MultiSelect_examples.png" alt="multi-select">
+<img src="statics/multiselect_examples.png" alt="multi-select example">
 
 ### Search:
-<img src="statics/MultiSelect_search_examples.png" alt="multi-select">
+<img src="statics/multiselect_search_examples.png" alt="multi-select search example">
 
 ## Example
 
