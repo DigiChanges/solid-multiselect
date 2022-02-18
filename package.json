@@ -10,8 +10,8 @@
     "url": "https://github.com/DigiChanges/solid-multiselect/issues"
   },
   "homepage": "https://github.com/DigiChanges/solid-multiselect#readme",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
+  "main": "dist/index.jsx",
+  "module": "dist/index.jsx",
   "types": "dist/index.d.ts",
   "sideEffects": "false",
   "files": [
@@ -34,7 +34,7 @@
     "prebuild": "npm run clean",
     "clean": "rimraf dist/",
     "build": "tsc && yarn cp:css",
-    "cp:css": "cp src/MultiSelect/MultiSelect.css dist/MultiSelect/MultiSelect.css",
+    "cp:css": "cp src/MultiSelect.css dist/MultiSelect.css",
     "lint": "eslint --ext ts,tsx --max-warnings 0 --cache src"
   },
   "author": "DigiChanges <https://www.linkedin.com/company/digichanges>",

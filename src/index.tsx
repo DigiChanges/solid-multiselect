@@ -1,6 +1,5 @@
-import { createEffect, createSignal, mergeProps, splitProps, onMount, Component, Show } from 'solid-js';
-import { For } from 'solid-js/web';
-import { Option } from  '../types';
+import { createEffect, createSignal, mergeProps, splitProps, onMount, Component, Show, For } from 'solid-js';
+import { Option } from  './types';
 import './MultiSelect.css';
 
 // const DownArrow = 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Angle_down_font_awesome.svg/1200px-Angle_down_font_awesome.svg.png';
@@ -59,7 +58,7 @@ const closeIconTypes = {
     // cancel: CloseLine
 };
 
-export const MultiSelect: Component<IMultiSelectProps> = ( props: IMultiSelectProps ) =>
+const MultiSelect: Component<IMultiSelectProps> = ( props: IMultiSelectProps ) =>
 {
     props = mergeProps( defaultProps, props );
     const [ local ] = splitProps( props, [ 'placeholder', 'style', 'singleSelect', 'id', 'hidePlaceholder', 'disable', 'showArrow', 'avoidHighlightFirstOption' ] );
