@@ -58,7 +58,7 @@ const closeIconTypes = {
     // cancel: CloseLine
 };
 
-const MultiSelect: Component<IMultiSelectProps> = ( props: IMultiSelectProps ) =>
+export const MultiSelect: Component<IMultiSelectProps> = ( props: IMultiSelectProps ) =>
 {
     props = mergeProps( defaultProps, props );
     const [ local ] = splitProps( props, [ 'placeholder', 'style', 'singleSelect', 'id', 'hidePlaceholder', 'disable', 'showArrow', 'avoidHighlightFirstOption' ] );
@@ -81,7 +81,7 @@ const MultiSelect: Component<IMultiSelectProps> = ( props: IMultiSelectProps ) =
 
     let optionTimeout: number;
     let searchBox: HTMLInputElement;
-    const searchWrapper = ( el: HTMLInputElement ) => el.addEventListener( 'click', listenerCallback );
+    const searchWrapper = ( el: HTMLDivElement ) => el.addEventListener( 'click', listenerCallback );
 
     function renderGroupByOptions ()
     {
@@ -134,6 +134,7 @@ const MultiSelect: Component<IMultiSelectProps> = ( props: IMultiSelectProps ) =
         }
         return selectedValues().filter( i => i === item ).length > 0;
     };
+
     const fadeOutSelection = ( item: Option ) =>
     {
         if ( props.singleSelect )
@@ -165,7 +166,7 @@ const MultiSelect: Component<IMultiSelectProps> = ( props: IMultiSelectProps ) =
         }
     };
 
-    const isDisablePreSelectedValues = ( value ) =>
+    const isDisablePreSelectedValues = ( value: Option ) =>
     {
         if ( !props.disablePreSelectedValues || !preSelectedValues().length )
         {
@@ -276,13 +277,13 @@ const MultiSelect: Component<IMultiSelectProps> = ( props: IMultiSelectProps ) =
         initialSetValue();
     } );
 
-    const onSingleSelect = ( item ) =>
+    const onSingleSelect = ( item: Option ) =>
     {
         setSelectedValues( [ item ] );
         setToggleOptionsList( false );
     };
 
-    const onRemoveSelectedItem = ( item ) =>
+    const onRemoveSelectedItem = ( item: Option ) =>
     {
         let index = 0;
         const newSelectedValues = [ ...selectedValues() ];
@@ -315,10 +316,11 @@ const MultiSelect: Component<IMultiSelectProps> = ( props: IMultiSelectProps ) =
         {
             setInputValue( '' );
         }
-        if ( props.singleSelect )
+        if ( singleSelect )
         {
             onSingleSelect( item );
             props.onSelect( [ item ], item );
+            setInputValue( '' );
             return;
         }
         if ( isSelectedValue( item ) )
@@ -419,7 +421,7 @@ const MultiSelect: Component<IMultiSelectProps> = ( props: IMultiSelectProps ) =
         setHighlightOption( avoidHighlightFirstOption ? -1 : 0 );
     };
 
-    const matchValues = ( value, search ) =>
+    const matchValues = ( value: string, search: string ) =>
     {
         if ( props.caseSensitiveSearch )
         {
@@ -437,17 +439,17 @@ const MultiSelect: Component<IMultiSelectProps> = ( props: IMultiSelectProps ) =
         let newOptions: Option[];
         if ( props.isObject )
         {
-            newOptions = filteredOptions().filter( i => matchValues( i[props.displayValue], inputValue() ) );
+            newOptions = filteredOptions().filter( option => matchValues( option[props.displayValue], inputValue() ) );
         }
         else
         {
-            newOptions = filteredOptions().filter( i => matchValues( i, inputValue() ) );
+            newOptions = filteredOptions().filter( option => matchValues( option.toString(), inputValue() ) );
         }
         groupByOptions( newOptions );
         setOptions( newOptions );
     };
 
-    const groupByOptions = ( options ) =>
+    const groupByOptions = ( options: Option[] ) =>
     {
         const groupBy = props.groupBy;
         const groupedObject = options.reduce( function ( r, a )
@@ -463,6 +465,11 @@ const MultiSelect: Component<IMultiSelectProps> = ( props: IMultiSelectProps ) =
 
     const onInput = ( event ) =>
     {
+        if ( singleSelect )
+        {
+            setSelectedValues( [] );
+        }
+
         setInputValue( event.target.value );
         // TODO: Fix wait setInputValue
         setTimeout( () =>
@@ -477,6 +484,10 @@ const MultiSelect: Component<IMultiSelectProps> = ( props: IMultiSelectProps ) =
 
     const onFocus = () =>
     {
+        if ( singleSelect )
+        {
+            setOptions( props.options );
+        }
         if ( toggleOptionsList() )
         {
             clearTimeout( optionTimeout );
@@ -489,7 +500,14 @@ const MultiSelect: Component<IMultiSelectProps> = ( props: IMultiSelectProps ) =
 
     const onBlur = () =>
     {
-        optionTimeout = setTimeout( toggleOptionList, 250 );
+        if ( toggleOptionsList() )
+        {
+            optionTimeout = setTimeout( () => setToggleOptionsList( false ), 150 );
+            if ( singleSelect )
+            {
+                setInputValue( '' );
+            }
+        }
     };
 
     const onArrowKeyNavigation = ( e ) =>
@@ -575,14 +593,13 @@ const MultiSelect: Component<IMultiSelectProps> = ( props: IMultiSelectProps ) =
                 <div class="search-wrapper searchWrapper"
                     classList={{ singleSelect }}
                     ref={searchWrapper} style={style['searchBox']}
-                    onClick={singleSelect ? toggleOptionList : () =>
-                    { }}
                 >
                     {renderSelectedList()}
                     <input
                         type="text"
                         ref={searchBox}
                         class="searchBox"
+                        classList={{ searchSingle: singleSelect }}
                         id={`${id || 'search'}_input`}
                         onInput={onInput}
                         value={inputValue()}
@@ -592,7 +609,7 @@ const MultiSelect: Component<IMultiSelectProps> = ( props: IMultiSelectProps ) =
                         onKeyDown={onArrowKeyNavigation}
                         style={style['inputField']}
                         autocomplete="off"
-                        disabled={singleSelect || disable}
+                        disabled={disable}
                     />
                     <Show when={( singleSelect || showArrow )}>
                         <img class="icon_cancel icon_down_dir" src={DownArrow} />

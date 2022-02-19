@@ -10,8 +10,8 @@
     "url": "https://github.com/DigiChanges/solid-multiselect/issues"
   },
   "homepage": "https://github.com/DigiChanges/solid-multiselect#readme",
-  "main": "dist/index.jsx",
-  "module": "dist/index.jsx",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "sideEffects": "false",
   "files": [
