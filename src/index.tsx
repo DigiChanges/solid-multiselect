@@ -1,5 +1,5 @@
 import { createEffect, createSignal, mergeProps, splitProps, onMount, Component, Show, For } from 'solid-js';
-import { Option } from  './types';
+import { Option } from  './Option';
 import './MultiSelect.css';
 
 // const DownArrow = 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Angle_down_font_awesome.svg/1200px-Angle_down_font_awesome.svg.png';

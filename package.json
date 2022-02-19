@@ -10,8 +10,8 @@
     "url": "https://github.com/DigiChanges/solid-multiselect/issues"
   },
   "homepage": "https://github.com/DigiChanges/solid-multiselect#readme",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
+  "main": "dist/index.jsx",
+  "module": "dist/index.jsx",
   "types": "dist/index.d.ts",
   "sideEffects": "false",
   "files": [
@@ -25,7 +25,10 @@
     "solid",
     "solidjs",
     "components",
-    "multiselect"
+    "multiSelect",
+    "dropdown",
+    "singleSelect",
+    "html component"
   ],
   "publishConfig": {
     "access": "public"

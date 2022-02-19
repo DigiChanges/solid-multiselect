@@ -14,6 +14,10 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
   },
+  "types": [
+    "solid-js",
+    "solid-js/dom"
+  ],
   "include": [
     "./src"
   ],
