@@ -38,7 +38,8 @@
     "clean": "rimraf dist/",
     "build": "tsc && yarn cp:css",
     "cp:css": "cp src/MultiSelect.css dist/MultiSelect.css",
-    "lint": "eslint --ext ts,tsx --max-warnings 0 --cache src"
+    "lint": "eslint --ext ts,tsx --max-warnings 0 --cache src",
+    "watch": "nodemon --watch src --exec \"yarn build\""
   },
   "author": "DigiChanges <https://www.linkedin.com/company/digichanges>",
   "license": "MIT",
@@ -47,6 +48,7 @@
     "@typescript-eslint/parser": "^5.12.0",
     "eslint": "^8.0.1",
     "eslint-plugin-solid": "^0.1.2",
+    "nodemon": "^2.0.15",
     "typescript": "^4.4.4"
   },
   "peerDependencies": {

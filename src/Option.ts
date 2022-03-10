@@ -1,1 +1,1 @@
-export type Option = Record<string, string | number> | string | number
+export type Option = Record<string, string | number | boolean | unknown> | string | number
